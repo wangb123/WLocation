@@ -6,6 +6,8 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.DistanceUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -121,6 +123,17 @@ public class WLocation {
         } else {
             callback.call(null, lastPosition);
         }
+    }
+
+    /**
+     * 获取两点之间的距离
+     *
+     * @param point1 点1
+     * @param point2 点2
+     * @return 直线距离，单位米
+     */
+    public static double distance(LatLng point1, LatLng point2) {
+        return DistanceUtil.getDistance(point1, point2);
     }
 
     /**

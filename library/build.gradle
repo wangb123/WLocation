@@ -50,7 +50,7 @@ repositories {
 
 publish {
     artifactId = 'location'
-    publishVersion = '0.0.2'
+    publishVersion = '0.0.3'
     desc = '基于百度地图封装的定位sdk'
     userOrg = rootProject.ext.pub_user
     groupId = rootProject.ext.pub_group
