@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @WPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
     public void getPermission() {
         Log.e("TAG", "获取权限成功");
-        //初始化
+        //chushi
         WLocation.init(this);
-        //获取地理位置
         WLocation.get((error, location) -> {
             if (error != null) {
                 return;

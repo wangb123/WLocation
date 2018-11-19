@@ -59,8 +59,9 @@ dependencies {
     implementation "$api_kt"
     implementation "$api_appcompat"
 
+//    implementation project(':library')
+    implementation 'org.wbing:location:0.0.2'
 
-    implementation project(':library')
     implementation 'org.wbing:permission:0.0.1'
     implementation 'org.aspectj:aspectjrt:1.8.9'
     //...library中的引用库

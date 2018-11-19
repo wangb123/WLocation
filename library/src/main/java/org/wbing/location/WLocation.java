@@ -18,30 +18,30 @@ public class WLocation {
     /**
      * name
      */
-    public String name;
+    public final String name;
     /**
      * 城市
      */
-    public String city;
+    public final String city;
     /**
      * 详细地址
      */
-    public String address;
+    public final String address;
 
     /**
      * 纬度，浮点数，范围为-90~90，负数表示南纬。百度坐标系
      */
-    public double latitude;
+    public final double latitude;
 
     /**
      * 经度，浮点数，范围为-180~180，负数表示西经。百度坐标系
      */
-    public double longitude;
+    public final double longitude;
 
     /**
      * 定位时间
      */
-    public long timestamp;
+    public final long timestamp;
 
 
     public WLocation(String name, String city, String address, double latitude, double longitude) {
@@ -50,6 +50,7 @@ public class WLocation {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.timestamp = System.currentTimeMillis();
     }
 
     @Override
@@ -112,6 +113,14 @@ public class WLocation {
         client.setLocOption(option);
 
         client.start();
+    }
+
+    public static void getIfNeed(Callback callback) {
+        if (lastPosition == null) {
+            get(callback);
+        } else {
+            callback.call(null, lastPosition);
+        }
     }
 
     /**
@@ -183,11 +192,13 @@ public class WLocation {
                 return;
             }
 
-            callback.call(null, new WLocation(bdLocation.getLocationDescribe(),
+            lastPosition = new WLocation(bdLocation.getLocationDescribe(),
                     bdLocation.getCity(),
                     bdLocation.getAddrStr(),
                     bdLocation.getLatitude(),
-                    bdLocation.getLongitude()));
+                    bdLocation.getLongitude());
+
+            callback.call(null, lastPosition);
         }
     }
 
